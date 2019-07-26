@@ -30,7 +30,7 @@ const printBuildError = require('react-dev-utils/printBuildError');
 const measureFileSizesBeforeBuild =
   FileSizeReporter.measureFileSizesBeforeBuild;
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
-const useYarn = fs.existsSync(paths.yarnLockFile);
+const useNpm = fs.existsSync(paths.packageLockFile);
 
 // These sizes are pretty large. We'll warn for bundles exceeding them.
 const WARN_AFTER_BUNDLE_GZIP_SIZE = 512 * 1024;
@@ -44,7 +44,7 @@ if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
 }
 
 // Generate configuration
-const config = configFactory('production');
+const config = configFactory(process.env.NODE_ENV);
 
 // We require that you explicitly set browsers and do not fall back to
 // browserslist defaults.
@@ -102,7 +102,7 @@ checkBrowsers(paths.appPath, isInteractive)
         publicUrl,
         publicPath,
         buildFolder,
-        useYarn
+        useNpm
       );
     },
     err => {
@@ -132,7 +132,10 @@ function build(previousFileSizes) {
     console.log();
   }
 
-  console.log('Creating an optimized production build...');
+  const productionEnv = process.env.NODE_ENV === 'production'
+  const textProduction = 'Creating an optimized production build...';
+  const textDev = 'Creating dev build and watching...'
+  console.log(productionEnv ? textProduction : textDev);
 
   const compiler = webpack(config);
   return new Promise((resolve, reject) => {
