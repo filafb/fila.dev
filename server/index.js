@@ -19,6 +19,7 @@ const createApp = () => {
   app.use(compression());
 
   //static middleware
+  app.use('/public', express.static(path.join(__dirname, '../public')))
   app.use(express.static(path.join(__dirname, '../build')));
 
   //if someone enters an invalid URI, will be redirect to index.html
