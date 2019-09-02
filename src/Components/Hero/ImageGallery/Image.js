@@ -1,21 +1,32 @@
 import React, { useMemo, useState, useCallback } from 'react'
 import { TextureLoader } from 'three/src/Three'
-import { useSpring, a } from 'react-spring/three'
+import { a } from 'react-spring/three'
+import { useThree } from 'react-three-fiber'
 
-export default function Image ({ url, opacity, scale, z, index, ...props}) {
-  const texture = useMemo(() => new TextureLoader().load(url), [url])
-  const [ hovered, setHover ] = useState(false)
-  const hover = useCallback(() => setHover(true), [])
-  const unhover = useCallback(() => setHover(false), [])
-  const { factor } = useSpring({ factor: hovered ? 1.1 : 1})
+export default function Image({ url, opacity, scale, position }) {
+  const [{ width, height }, set] = useState(() => ({ width: 1, height: 1 }))
+  const [loaded, setLoad] = useState(false)
+  const texture = useMemo(() => new TextureLoader().load(url, onLoad), [url])
 
+  function onLoad(texture) {
+    set({
+      width: texture.image.width,
+      height: texture.image.height
+    })
+    setLoad(true)
+  }
+  const ratio = width / height
+  const heightAspect = 3 * ratio
+  const widthAspect = ratio * heightAspect
+  //console.log(widthAspect, heightAspect )
   return (
-    <a.mesh {...props} onHover={hover} onUnhover={unhover}
-    scale={factor.interpolate(f => [scale * f, scale * f, 1])}>
-      <planeBufferGeometry attach="geometry" args={[10,5]} />
-      <a.meshLambertMaterial attach="material" transparent opacity={opacity}>
+    loaded ?
+    <a.mesh position={position}>
+      <a.planeBufferGeometry attach="geometry" args={[widthAspect, heightAspect]} />
+      <a.meshLambertMaterial attach="material" transparent opacity={1}>
         <primitive attach="map" object={texture} />
       </a.meshLambertMaterial>
-    </a.mesh>
+    </a.mesh> :
+    null
   )
 }

@@ -1,14 +1,17 @@
 import React, { useCallback } from 'react'
-import { useThree } from 'react-three-fiber';
 import { a } from 'react-spring/three'
 import Images from './ImageGallery/Images'
+import { Canvas } from 'react-three-fiber'
+import Controller from '../Controller'
 
-export default function Scene ({ top, mouse }) {
-
+export default function Scene ({ mouse }) {
   return (
     <React.Fragment>
-      <a.spotLight intensity={1.2} color="white" position={mouse.interpolate((x,y) => [x / 100, -y / 100, 6.5])} />
-      <Images top={top} mouse={mouse} />
+      <a.spotLight intensity={1.2} color="white"
+      position={[1 , 1, 100]}
+      />
+      {/* <Controller /> */}
+      <Images mouse={mouse} />
     </React.Fragment>
   )
 }
