@@ -10,14 +10,14 @@ function random(min, max) { // min and max included
 
 export default function Images ({ mouse }) {
   const {
-    viewport: { width: viewportWidth, height: viewportHeight }
+    size: {width, height}
   } = useThree()
-  console.log(viewportWidth, viewportHeight)
+
   let newData = data.map(el => (
-    [el[0], random(-viewportWidth / 4,viewportWidth / 4), random(-viewportHeight / 5,viewportHeight / 5), random(-5,5), random(0,40), 1]
+    [el[0], random(-width / 7 / 4,width / 7 / 4), random(-height / 7 / 5,height / 7 / 5), random(-5,5), random(0,40), 1]
   ))
   let duplicateData = [...newData, ...data.map(el => (
-    [el[0], random(-viewportWidth / 4,viewportWidth / 4), random(-viewportHeight / 5,viewportHeight / 5), random(-5,5), random(0,40), 1]
+    [el[0], random(-width / 7 / 4,width / 7 / 4), random(-height / 7 / 5,height / 7 / 5), random(-5,5), random(0,40), 1]
   ))]
 
   return duplicateData.map(([url, x, y, factor, z, scale], index) => (
