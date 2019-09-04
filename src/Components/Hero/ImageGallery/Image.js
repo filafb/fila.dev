@@ -2,7 +2,8 @@ import React, { useMemo, useState, useCallback } from 'react'
 import { TextureLoader } from 'three/src/Three'
 import { a } from 'react-spring/three'
 
-export default function Image({ url, opacity, scale, position }) {
+
+function Image({ url, opacity, scale, position }) {
   const [{ width, height }, set] = useState(() => ({ width: 1, height: 1 }))
   const [loaded, setLoad] = useState(false)
   const texture = useMemo(() => new TextureLoader().load(url, onLoad), [url])
@@ -18,7 +19,7 @@ export default function Image({ url, opacity, scale, position }) {
   const ratio = width / height
   const heightAspect = 3 * ratio
   const widthAspect = ratio * heightAspect
-  //console.log(widthAspect, heightAspect )
+
   return (
     loaded ?
     <a.mesh position={position} >
@@ -30,3 +31,5 @@ export default function Image({ url, opacity, scale, position }) {
     null
   )
 }
+
+export default Image

@@ -17,7 +17,7 @@ function Controller ({zPosition}) {
   useRender(() => {
     return controller.current.update()
   })
-  return <trackballControls noRotate minDistance={2} maxDistance={70} ref={controller} args={[cameraUp]} />
+  return <trackballControls noRotate noPan minDistance={2} maxDistance={70} ref={controller} args={[cameraUp]} />
 }
 
 export default animated(Controller)

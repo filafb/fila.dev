@@ -34,7 +34,7 @@ export default function Images ({ mouse }) {
       return [
         (-mouse[0] * factor) / 5000 + x,
         (-mouse[1] * factor) / 5000 + y,
-        z
+        (-mouse[0] * factor) / 5000 + z
       ]
     })}
     />
