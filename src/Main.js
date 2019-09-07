@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { useSpring } from 'react-spring/three'
 import { Canvas } from 'react-three-fiber'
 import Scene from './Components/Hero/Scene'
-import Controller from './Components/Controller'
+import Controller from './Components/Hero/Controller'
 import './Main.css'
 
 export default function Main() {
@@ -12,8 +12,8 @@ export default function Main() {
   return (
     <React.Fragment>
       <Canvas className="canvas">
-        <Scene mouse={mouse} />
         <Controller zPosition={z} />
+        <Scene mouse={mouse} />
       </Canvas>
       <div className="scroll-container" onMouseMove={onMouseMove}>
         <div style={{ height: '100vh' }} />

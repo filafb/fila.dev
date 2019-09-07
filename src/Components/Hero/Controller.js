@@ -7,17 +7,15 @@ applyThree( { TrackballControls })
 
 function Controller ({zPosition}) {
   const controller = useRef()
-  const { camera } = useThree()
-
+  const { camera, gl } = useThree()
   const cameraUp = useMemo(() => {
     camera.position.z = zPosition
     return camera
   }, [zPosition])
-
   useRender(() => {
     return controller.current.update()
   })
-  return <trackballControls noRotate noPan minDistance={2} maxDistance={70} ref={controller} args={[cameraUp]} />
+  return <trackballControls noRotate minDistance={1} maxDistance={70} ref={controller} args={[cameraUp]} onClick={() => console.log('e')} />
 }
 
 export default animated(Controller)
