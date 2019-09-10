@@ -23,10 +23,10 @@ function Image({ url, opacity, scale, position }) {
   return (
     loaded ?
     <a.mesh position={position} >
-      <a.planeBufferGeometry attach="geometry" args={[widthAspect, heightAspect]} />
-      <a.meshLambertMaterial attach="material" transparent opacity={1}>
+      <planeBufferGeometry attach="geometry" args={[widthAspect, heightAspect]} />
+      <meshLambertMaterial attach="material" transparent opacity={1}>
         <primitive attach="map" object={texture} />
-      </a.meshLambertMaterial>
+      </meshLambertMaterial>
     </a.mesh> :
     null
   )

@@ -9,7 +9,6 @@ import { useSpring } from 'react-spring/three';
 
 export default function Scene({ mouse }) {
   const [{z}, setZ ]= useSpring(() => ({z:0}))
-
   useRender(({camera}) => {
     setZ({z: camera.position.z})
   })

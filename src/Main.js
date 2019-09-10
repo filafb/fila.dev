@@ -7,7 +7,7 @@ import './Main.css'
 
 export default function Main() {
   const [{mouse}, set] = useSpring(() => ( { top: 0, mouse: [0,0]}))
-  const {z} = useSpring({z: 70, from:{z:1}, config: {duration: 8000}, delay: 3000 })
+  const {z} = useSpring({z: 70, from:{z:1}, config: {duration: 7000}, delay: 3500 })
   const onMouseMove = useCallback(({clientX: x, clientY: y} ) => set({ mouse: [x - window.innerWidth / 2, y - window.innerHeight / 2]}), [])
   return (
     <React.Fragment>

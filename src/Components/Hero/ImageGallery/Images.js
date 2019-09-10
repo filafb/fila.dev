@@ -14,10 +14,10 @@ export default function Images ({ mouse }) {
   } = useThree()
 
   let newData = data.map(el => (
-    [el[0], random(-width / 7 / 4,width / 7 / 4), random(-height / 7 / 5,height / 7 / 5), random(-5,5), random(0,40), 1]
+    [el[0], random(-width / 7 / 4,width / 7 / 4), random(-height / 7 / 5,height / 7 / 5), random(-5,5), random(2,60), 1]
   ))
   let duplicateData = [...newData, ...data.map(el => (
-    [el[0], random(-width / 7 / 4,width / 7 / 4), random(-height / 7 / 5,height / 7 / 5), random(-5,5), random(0,40), 1]
+    [el[0], random(-width / 7 / 4,width / 7 / 4), random(-height / 7 / 5,height / 7 / 5), random(-5,5), random(2,60), 1]
   ))]
 
   return duplicateData.map(([url, x, y, factor, z, scale], index) => (
